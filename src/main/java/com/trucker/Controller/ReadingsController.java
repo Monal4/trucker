@@ -23,11 +23,10 @@ public class ReadingsController {
 	@Autowired
 	private TruckerService truckerService;
 	
-	@CrossOrigin(origins = "http://localhost:8080/readings")
+	@CrossOrigin(origins = "http://mocker.egen.academy")
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public VehicleReading HelperMapping(@RequestBody VehicleReading vehicle) {
-		System.out.println("Inside Controller");
 		return truckerService.putReadings(vehicle);
 	}
 }

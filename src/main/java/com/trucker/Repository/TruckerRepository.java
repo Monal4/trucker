@@ -5,4 +5,5 @@ import com.trucker.Entity.VehicleReading;
 public interface TruckerRepository {
 	
 	VehicleReading create(VehicleReading vehicle);
+	VehicleReading findById(String Id);
 }

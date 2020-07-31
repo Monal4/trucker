@@ -25,7 +25,6 @@ public class TruckerServiceImpl implements TruckerService {
 	@Override
 	public VehicleReading putReadings(VehicleReading V) {
 		
-		System.out.println("Inside Service");
 		return truckerRepository.create(V);	
 	}
 	

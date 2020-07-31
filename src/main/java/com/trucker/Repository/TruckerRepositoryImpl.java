@@ -15,9 +15,17 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	
 	@Override
 	public VehicleReading create(VehicleReading vehicle) {
-		
+		VehicleReading v = entityManager.find(VehicleReading.class, vehicle.getVin());
+		if(v!=null) {
+			entityManager.merge(vehicle);
+			return vehicle;
+		}
 		entityManager.persist(vehicle);
 		return vehicle;
 	}
-
+	
+	@Override
+	public VehicleReading findById(String Id) {
+		return entityManager.find(VehicleReading.class, Id);
+	}
 }
