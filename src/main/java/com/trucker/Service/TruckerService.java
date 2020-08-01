@@ -1,10 +1,12 @@
 package com.trucker.Service;
 
-import com.trucker.Entity.VehicleReading;
+import com.trucker.Entity.Reading;
 
 public interface TruckerService {
 	
 	void getReadings();
 	
-	VehicleReading putReadings(VehicleReading V);
+	Reading putReadings(Reading reading);
+	
+	void DELETE(Reading reading);
 }

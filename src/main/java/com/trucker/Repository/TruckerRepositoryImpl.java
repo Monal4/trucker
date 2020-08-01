@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.trucker.Entity.VehicleReading;
+import com.trucker.Entity.Reading;
 
 @Repository
 public class TruckerRepositoryImpl implements TruckerRepository {
@@ -14,18 +14,25 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public VehicleReading create(VehicleReading vehicle) {
-		VehicleReading v = entityManager.find(VehicleReading.class, vehicle.getVin());
+	public Reading create(Reading reading) {
+		Reading v = entityManager.find(Reading.class, reading.getVin());
 		if(v!=null) {
-			entityManager.merge(vehicle);
-			return vehicle;
+			entityManager.merge(reading);
+			return reading;
 		}
-		entityManager.persist(vehicle);
-		return vehicle;
+		entityManager.persist(reading);
+		return reading;
 	}
 	
 	@Override
-	public VehicleReading findById(String Id) {
-		return entityManager.find(VehicleReading.class, Id);
+	public Reading findById(String Id) {
+		return entityManager.find(Reading.class, Id);
+	}
+
+	@Override
+	public void DELETE(Reading reading) {
+		if(entityManager.contains(reading)) {
+			entityManager.remove(reading);
+		}
 	}
 }

@@ -1,9 +1,12 @@
 package com.trucker.Repository;
 
-import com.trucker.Entity.VehicleReading;
+import com.trucker.Entity.Reading;
 
 public interface TruckerRepository {
 	
-	VehicleReading create(VehicleReading vehicle);
-	VehicleReading findById(String Id);
+	Reading create(Reading reading);
+	
+	Reading findById(String Id);
+	
+	void DELETE(Reading reading);
 }

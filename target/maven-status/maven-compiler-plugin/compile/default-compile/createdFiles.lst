@@ -1,5 +1,6 @@
 com\trucker\Service\TruckerService.class
 com\trucker\Service\TruckerServiceImpl.class
+com\trucker\Entity\Reading.class
 com\trucker\Repository\TruckerRepository.class
 com\trucker\Application.class
 com\trucker\Controller\ReadingsController.class

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.trucker.Entity.VehicleReading;
+import com.trucker.Entity.Reading;
 import com.trucker.Service.TruckerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,9 +24,9 @@ public class ReadingsController {
 	private TruckerService truckerService;
 	
 	@CrossOrigin(origins = "http://mocker.egen.academy")
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+	@RequestMapping(method = RequestMethod.POST, value = "/readings", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public VehicleReading HelperMapping(@RequestBody VehicleReading vehicle) {
-		return truckerService.putReadings(vehicle);
+	public Reading Readings(@RequestBody Reading reading) {
+		return truckerService.putReadings(reading);
 	}
 }
