@@ -1,10 +1,11 @@
 package com.trucker.Service;
 
 import com.trucker.Entity.Reading;
+import com.trucker.Entity.Vehicle;
 
 public interface TruckerService {
 	
-	void getReadings();
+	void putVehicle(Vehicle vehicle);
 	
 	Reading putReadings(Reading reading);
 	

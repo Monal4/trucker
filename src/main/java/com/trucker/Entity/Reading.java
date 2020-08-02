@@ -1,11 +1,14 @@
 package com.trucker.Entity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Reading {
@@ -23,16 +26,15 @@ public class Reading {
 	private String engineCoolantLow;
 	private String cruiseControlOn;
 	private String engineRpm;
-	private String frontLeftTire;
-	private String frontRightTire;
-	private String rearLeftTire;
-	private String rearRightTire;
+	
+	@ElementCollection
+	Map<String,String> tires = new HashMap<>();
 	
 	public Reading() {}
 	
 	public Reading(String vin, String latitude, String longitude, String timestamp, String fuelVolume, String speed,
 			String engineHp, String checkEngineLightOn, String engineCoolantLow, String cruiseControlOn,
-			String engineRpm, String frontLeftTire, String frontRightTire, String rearLeftTire, String rearRightTire) {
+			String engineRpm, Map<String, String> tires) {
 		this.vin = vin;
 		this.latitude = latitude;
 		this.longitude = longitude;
@@ -44,10 +46,7 @@ public class Reading {
 		this.engineCoolantLow = engineCoolantLow;
 		this.cruiseControlOn = cruiseControlOn;
 		this.engineRpm = engineRpm;
-		this.frontLeftTire = frontLeftTire;
-		this.frontRightTire = frontRightTire;
-		this.rearLeftTire = rearLeftTire;
-		this.rearRightTire = rearRightTire;
+		this.tires = tires;
 	}
 
 	public String getVin() {
@@ -138,36 +137,11 @@ public class Reading {
 		this.engineRpm = engineRpm;
 	}
 
-	public String getFrontLeftTire() {
-		return frontLeftTire;
+	public Map<String,String> getTires() {
+		return tires;
 	}
-
-	public void setFrontLeftTire(String frontLeftTire) {
-		this.frontLeftTire = frontLeftTire;
+	
+	public void setTires(Map<String, String> tires) {
+		this.tires = tires;
 	}
-
-	public String getFrontRightTire() {
-		return frontRightTire;
-	}
-
-	public void setFrontRightTire(String frontRightTire) {
-		this.frontRightTire = frontRightTire;
-	}
-
-	public String getRearLeftTire() {
-		return rearLeftTire;
-	}
-
-	public void setRearLeftTire(String rearLeftTire) {
-		this.rearLeftTire = rearLeftTire;
-	}
-
-	public String getRearRightTire() {
-		return rearRightTire;
-	}
-
-	public void setRearRightTire(String rearRightTire) {
-		this.rearRightTire = rearRightTire;
-	}
-
 }

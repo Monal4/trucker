@@ -4,5 +4,5 @@ com\trucker\Entity\Reading.class
 com\trucker\Repository\TruckerRepository.class
 com\trucker\Application.class
 com\trucker\Controller\ReadingsController.class
-com\trucker\Entity\VehicleReading.class
+com\trucker\Entity\Vehicle.class
 com\trucker\Repository\TruckerRepositoryImpl.class

@@ -5,8 +5,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.junit.Before;
+import org.assertj.core.util.Maps;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,10 +63,15 @@ public class ReadingsControllerTest {
 	}
 	
 	public static Reading setReadings() {
+		Map<String,String> tires = new HashMap<>();
+		tires.put("Fleft", "34");
+		tires.put("Fright", "36");
+		tires.put("Rleft", "29");
+		tires.put("Rright", "34");
 		
 		Reading reading = new Reading("1HGCR2F3XFA027534","41.803194","-88.144406",
 				"2017-05-25T17:31:25.268Z","1.5","85","240"
-				,"false","true","true","6300","34","36","29","34");
+				,"false","true","true","6300",tires);
 		return reading;
 	}
 

@@ -1,8 +1,8 @@
-C:\trucker\src\main\java\com\trucker\Repository\TruckerRepositoryImpl.java
-C:\trucker\src\main\java\com\trucker\Application.java
-C:\trucker\src\main\java\com\trucker\Service\TruckerService.java
-C:\trucker\src\main\java\com\trucker\Service\TruckerServiceImpl.java
-C:\trucker\src\main\java\com\trucker\Entity\VehicleReading.java
-C:\trucker\src\main\java\com\trucker\Controller\ReadingsController.java
-C:\trucker\src\main\java\com\trucker\Repository\TruckerRepository.java
-C:\trucker\src\main\java\com\trucker\Entity\Reading.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Repository\TruckerRepository.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Service\TruckerServiceImpl.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Application.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Repository\TruckerRepositoryImpl.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Service\TruckerService.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Entity\Reading.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Controller\ReadingsController.java
+C:\Users\rupap\Workspace3\trucker\src\main\java\com\trucker\Entity\Vehicle.java

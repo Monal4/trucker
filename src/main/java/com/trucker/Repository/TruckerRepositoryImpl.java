@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.trucker.Entity.Reading;
+import com.trucker.Entity.Vehicle;
 
 @Repository
 public class TruckerRepositoryImpl implements TruckerRepository {
@@ -14,9 +15,9 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public Reading create(Reading reading) {
-		Reading v = entityManager.find(Reading.class, reading.getVin());
-		if(v!=null) {
+	public Reading newReading(Reading reading) {
+		Reading r = entityManager.find(Reading.class, reading.getVin());
+		if(r!=null) {
 			entityManager.merge(reading);
 			return reading;
 		}
@@ -25,7 +26,21 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	}
 	
 	@Override
-	public Reading findById(String Id) {
+	public void putVehicle(Vehicle vehicle) {
+		Vehicle v = entityManager.find(Vehicle.class, vehicle.getVin());
+		if(v==null) {
+			entityManager.persist(vehicle);
+		}else {
+			entityManager.merge(vehicle);
+		}
+	}
+	
+	@Override
+	public Reading findById(String Id){
+		Reading reading = entityManager.find(Reading.class, Id);
+		if(reading == null) {
+			System.out.println("DAO Exception on FindByID");
+		}
 		return entityManager.find(Reading.class, Id);
 	}
 

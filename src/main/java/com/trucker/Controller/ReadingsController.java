@@ -14,19 +14,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trucker.Entity.Reading;
+import com.trucker.Entity.Vehicle;
 import com.trucker.Service.TruckerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@CrossOrigin(origins = "http://mocker.egen.academy")
 @RestController
 public class ReadingsController {
 	
 	@Autowired
 	private TruckerService truckerService;
 	
-	@CrossOrigin(origins = "http://mocker.egen.academy")
 	@RequestMapping(method = RequestMethod.POST, value = "/readings", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Reading Readings(@RequestBody Reading reading) {
+	public Reading ReadingsUpdate(@RequestBody Reading reading) {
 		return truckerService.putReadings(reading);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/vehicles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Vehicle> Vehicle(@RequestBody List<Vehicle> vehicles) {
+		for(Vehicle vehicle : vehicles) {
+			truckerService.putVehicle(vehicle);
+		}
+		
+		return vehicles;
 	}
 }
