@@ -2,6 +2,7 @@ package com.trucker.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -10,15 +11,16 @@ public class Vehicle {
 	@Id
 	private String vin;
 	
+	@OneToOne
+	@JoinColumn(name = "vin", referencedColumnName = "vin")
+	private Reading reading;
+	
 	private String make;
 	private String model;
 	private String year;
 	private String redlineRpm;
 	private String maxFuelVolume;
 	private String lastServiceDate;
-	
-	@OneToOne
-	private Reading reading;
 	
 	public Vehicle() {}
 	

@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -144,4 +146,23 @@ public class Reading {
 	public void setTires(Map<String, String> tires) {
 		this.tires = tires;
 	}
+
+	@Override
+	public String toString() {
+		return "{"
+				+ "vin=" + vin 
+				+ ", latitude=" + latitude 
+				+ ", longitude=" + longitude 
+				+ ", timestamp=" + timestamp 
+				+ ", fuelVolume=" + fuelVolume 
+				+ ", speed=" + speed 
+				+ ", engineHp=" + engineHp
+				+ ", checkEngineLightOn=" + checkEngineLightOn 
+				+ ", engineCoolantLow=" + engineCoolantLow
+				+ ", cruiseControlOn=" + cruiseControlOn 
+				+ ", engineRpm=" + engineRpm 
+				+ ", tires=" + tires 
+			+ "}";
+	}
+	
 }

@@ -31,12 +31,10 @@ public class ReadingsController {
 		return truckerService.putReadings(reading);
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, value = "/vehicles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(method = RequestMethod.PUT, value = "/vehicles", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Vehicle> Vehicle(@RequestBody List<Vehicle> vehicles) {
-		for(Vehicle vehicle : vehicles) {
-			truckerService.putVehicle(vehicle);
-		}
-		
+		truckerService.putVehicles(vehicles);
 		return vehicles;
 	}
 }

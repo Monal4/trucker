@@ -1,5 +1,7 @@
 package com.trucker.Service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +20,32 @@ public class TruckerServiceImpl implements TruckerService {
 	@Transactional
 	@Override
 	public Reading putReadings(Reading reading) {
+		Vehicle V = truckerRepository.findVehicleById(reading.getVin());
 		
-		return truckerRepository.newReading(reading);	
+		if(V!=null) return truckerRepository.putReading(reading);
+		else {
+			System.out.println("Inject Vehicles first");
+			return new Reading();
+		}
 	}
 	
 	@Transactional
 	@Override
-	public void DELETE(Reading reading) {
-		
-		truckerRepository.DELETE(reading);
+	public void removeReading(Reading reading) {
+		truckerRepository.removeReading(reading);
 	}
 
 	@Transactional
 	@Override
-	public void putVehicle(Vehicle vehicle) {
+	public void putVehicles(List<Vehicle> vehicles) {
 		
-		truckerRepository.putVehicle(vehicle);
-		System.out.println("successfull insert");
+		truckerRepository.putVehicles(vehicles);
+	}
+
+	@Transactional
+	@Override
+	public void removeVehicle(Vehicle vehicle) {
+		truckerRepository.removeVehicle(vehicle);
 	}
 	
 }

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.trucker.Controller.ReadingsControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.333 s - in com.trucker.Controller.ReadingsControllerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.678 s - in com.trucker.Controller.ReadingsControllerTest

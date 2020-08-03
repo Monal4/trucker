@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import org.junit.Before;
 import org.assertj.core.util.Maps;
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trucker.Entity.Reading;
+import com.trucker.Entity.Vehicle;
 import com.trucker.Repository.TruckerRepository;
 
 @RunWith(SpringRunner.class)
@@ -39,20 +41,28 @@ public class ReadingsControllerTest {
 	private MockMvc mockMVC;
 	
 	Reading reading;
+	List<Vehicle> vehicles;
 	
 	@Autowired
 	private TruckerRepository truckerRepository;
 	
+	@Before
+	public void startUp() {
+		vehicles = createVehicle();
+		reading = createReading();
+	}
+	
 	@After
 	public void cleanUp() {
-		truckerRepository.DELETE(reading);
+		truckerRepository.removeReading(reading);
+		vehicles.forEach((vehicle) -> {
+			truckerRepository.removeVehicle(vehicle);
+		});
 	}
 	
 	@Test
 	public void Readings() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		
-		reading = setReadings();
 		
 		mockMVC.perform(MockMvcRequestBuilders.options("http://localhost:8080/readings")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -62,7 +72,19 @@ public class ReadingsControllerTest {
 				).andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
-	public static Reading setReadings() {
+	@Test
+	public void Vehicle() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		mockMVC.perform(MockMvcRequestBuilders.options("http://localhost:8080/vehicles")
+				.contentType(MediaType.APPLICATION_PROBLEM_JSON_UTF8)
+				.content(mapper.writeValueAsBytes(vehicles))
+				.header("Access-Control-Request-Method", "PUT")
+				.header("Origin", "http://mocker.egen.academy")
+				).andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+	public static Reading createReading() {
 		Map<String,String> tires = new HashMap<>();
 		tires.put("Fleft", "34");
 		tires.put("Fright", "36");
@@ -74,5 +96,11 @@ public class ReadingsControllerTest {
 				,"false","true","true","6300",tires);
 		return reading;
 	}
-
+	
+	public static List<Vehicle> createVehicle() {
+		
+		List<Vehicle> list = new ArrayList<>();
+		list.add(new Vehicle("1HGCR2F3XFA027534", "HONDA", "ACCORD", "2015", "550", "15", "2017-05-25T17:31:25.268Z"));
+		return list;
+	}
 }

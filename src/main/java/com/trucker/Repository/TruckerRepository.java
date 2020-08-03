@@ -1,17 +1,21 @@
 package com.trucker.Repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
 import com.trucker.Entity.Reading;
 import com.trucker.Entity.Vehicle;
 
 public interface TruckerRepository {
 	
-	void putVehicle(Vehicle vehicle);
+	void putVehicles(List<Vehicle> vehicles);
 	
-	Reading newReading(Reading reading);
+	Reading putReading(Reading reading);
 	
 	Reading findById(String Id);
 	
-	void DELETE(Reading reading);
+	void removeReading(Reading reading);
+	
+	void removeVehicle(Vehicle vehicle);
+	
+	Vehicle findVehicleById(String Id);
 }

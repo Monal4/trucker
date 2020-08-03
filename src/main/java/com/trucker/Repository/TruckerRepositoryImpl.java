@@ -1,5 +1,7 @@
 package com.trucker.Repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -15,7 +17,7 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	private EntityManager entityManager;
 	
 	@Override
-	public Reading newReading(Reading reading) {
+	public Reading putReading(Reading reading) {
 		Reading r = entityManager.find(Reading.class, reading.getVin());
 		if(r!=null) {
 			entityManager.merge(reading);
@@ -26,13 +28,14 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	}
 	
 	@Override
-	public void putVehicle(Vehicle vehicle) {
-		Vehicle v = entityManager.find(Vehicle.class, vehicle.getVin());
-		if(v==null) {
+	public void putVehicles(List<Vehicle> vehicles) {
+		vehicles.forEach((vehicle) -> {
+			Vehicle v = entityManager.find(Vehicle.class, vehicle.getVin());
+			if(v!=null) {
+				entityManager.merge(vehicle);			
+			}
 			entityManager.persist(vehicle);
-		}else {
-			entityManager.merge(vehicle);
-		}
+		});
 	}
 	
 	@Override
@@ -45,9 +48,21 @@ public class TruckerRepositoryImpl implements TruckerRepository {
 	}
 
 	@Override
-	public void DELETE(Reading reading) {
+	public void removeReading(Reading reading) {
 		if(entityManager.contains(reading)) {
 			entityManager.remove(reading);
 		}
+	}
+
+	@Override
+	public void removeVehicle(Vehicle vehicle) {
+		if(entityManager.contains(vehicle)) {
+			entityManager.remove(vehicle);
+		}
+	}
+
+	@Override
+	public Vehicle findVehicleById(String Id) {
+		return entityManager.find(Vehicle.class, Id);
 	}
 }
